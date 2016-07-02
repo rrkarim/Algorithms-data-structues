@@ -1,5 +1,5 @@
-#ifndef _BINARY_SEARCH_TREE__
-#define _BINARY_SEARCH_TREE__
+#ifndef __BINARY_SEARCH_TREE__
+#define __BINARY_SEARCH_TREE__
 
 #include <stdlib.h>
 #include <exception>
@@ -73,9 +73,6 @@ namespace alg {
 					}
 				}
 
-				/**
-				 * delete a key from the binary search tree.
-				 */
 				bool deleteKey(const KeyT & key) {
 					
 					throw BSTException();
@@ -90,18 +87,13 @@ namespace alg {
 					} else if (z->right == NULL) {
 						transplant(z, z->left);
 					} else {
-						// find the minimum element of the right subtree
 						treeNode *y = minimum(z->right);	
 						if (y->parent != z) {
-							// replace y with right-child
 							transplant(y, y->right);
-							// replace right-child of y with the right-child of z
 							y->right = z->right;
-							// make y the parent of the right-child
 							y->right->parent = y;
 						}
 
-						// replace z with y
 						transplant(z,y);
 						y->left = z->left;
 						y->left->parent = y;
@@ -117,7 +109,7 @@ namespace alg {
 					}
 					print_tree(n->right, indent+1);
 					int i;
-					for (i=0;i<indent;i++){
+					for (i = 0;i<indent;i++){
 						printf(" ");
 					}
 					std::cout << "[" << n->key << "," << n->value << "]" << std::endl;
@@ -135,9 +127,6 @@ namespace alg {
 					delete n;
 				}
 
-				/**
-				 * replace node u with v.
-				 */
 				void transplant(treeNode *u, treeNode *v) {
 					if (u->parent == NULL) {
 						m_root = v;
@@ -151,10 +140,6 @@ namespace alg {
 						v->parent = u->parent;
 					}
 				}
-
-				/**
-				 * find the minimum element of the subtree
-				 */
 				treeNode * minimum(treeNode *x) {
 					while (x->left != NULL) {
 						x = x->left;

@@ -1,21 +1,23 @@
-#include <stdio.h>
-#include <time.h>
-
+/**
+* 
+*/
+#include <inc_libs.h>
 #include "binary_search_tree.h"
 
 using namespace alg;
+
+const int MAX_ELEMENTS = 10005;
+
 int main() {
-	const int MAX_ELEMENTS = 10;
-	int key[MAX_ELEMENTS];
-	int value[MAX_ELEMENTS];
+	
 	BST<int, int> t;
 
 	t.insert(1, 100);
-	try {
-		t.deleteKey(3);
-	}
-	catch(BST::BSTException& e) {
-		
-	}
+	t.insert(2, 100);
+	t.insert(3, 50);
+	t.insert(4, 200);
+
+	t.print_helper();
+	
 	return 0;
 }
