@@ -1,15 +1,18 @@
 #ifndef __GRAPH_OPERATIONS__
 #define __GRAPH_OPERATIONS__
 
-template <typename T>
-using vii = std::vector< vector<T> >;
-
 namespace alg {
-	template <typename <T>>
+	
+	template <typename T>
+	using vii = std::vector< vector<T> >;
+
+
+	template <typename T>
 	class Graph_Op {
+	    public:
 		// return random undirected graph
-		static vii rand_directed(const int &value) {
-			vii ret;
+		static vii<T> rand_directed(const int &value) {
+			vii<T> ret;
 			ret.resize(value);
 
 			// FIX ***
@@ -28,8 +31,15 @@ namespace alg {
 			return ret;
 
 		}
-	};
 
+		static void print_graph(const vii<T>& temp_graph) {
+            for(int i = 0; i < temp_graph.size(); ++i) {
+                for(int j = 0; j < temp_graph[i].size(); ++j) {
+                    std::cout << i << " " << temp_graph[i][j] << std::endl;
+                }
+            }
+		}
+	};
 }
 
 #endif
