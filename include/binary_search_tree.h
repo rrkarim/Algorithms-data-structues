@@ -1,6 +1,10 @@
 #ifndef _BINARY_SEARCH_TREE__
 #define _BINARY_SEARCH_TREE__
 
+#include <stdlib.h>
+#include <exception>
+#include <iostream>
+
 namespace alg {
 	template <typename KeyT, typename ValueT>
 	class BST {
@@ -15,7 +19,7 @@ namespace alg {
 		class BSTException : public std::exception {
 			public:
 				virtual const char *what() const throw() {
-					return "ke does not exist";
+					return "key does not exist";
 				}
 		} excp_key;
 
@@ -33,7 +37,7 @@ namespace alg {
 			treeNode *find(const KeyT & key) {
 				treeNode  *n = m_root;
 				while(n != NULL && key != n->key) {
-					if(key < n-key) {
+					if(key < n->key) {
 						n = n->left;
 					} else {
 						n = n->right;
@@ -73,8 +77,11 @@ namespace alg {
 				 * delete a key from the binary search tree.
 				 */
 				bool deleteKey(const KeyT & key) {
+					
+					throw BSTException();
+
 					treeNode *z = find(key);
-					if (z == NULL) {
+					if (z == NULL) {	
 						return false;
 					}
 
