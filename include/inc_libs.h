@@ -5,11 +5,10 @@
 #include <assert.h>
 #include <stdlib.h>
 #include <vector>
+#include <time.h>
 #include <limits>
 #define Max(a, b) ( (a > b) ? a : b )
 #define Min(a, b) ( (a < b) ? a : b )
-//#define PINF  2000000000000000
-//#define MINF -2000000000000000
 #define RANDOM_INIT()	srand(time(NULL))
 #define RANDOM(L, R)	(L + rand() % ((R) - (L) + 1))
 

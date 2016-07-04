@@ -9,9 +9,7 @@ namespace alg {
 		public:
 			static vi<T> run(const viiw<T, TW> & g, const T init) {
 				int n = g.size();
-				// use alias template <T> declared in inc_libs
-				vi<T> d(n, PINF<int>::max());
-				
+				vi<T> d(n, PINF<int>::max()); // use alias template <T> declared in inc_libs
 				d[ init ] = 0;
 				std::vector<char> u(n);
 
@@ -22,26 +20,18 @@ namespace alg {
 							v = j;
 						if(d[v] == PINF<int>::max()) break;
 						u[v] = true;
-
 						for(size_t j = 0; j < g[v].size(); ++j) {
 							int to = g[v][j].first,
 							len = g[v][i].second;
 
 							if(d[v] + len < d[to]) {
 								d[to] = d[v] + len;
-								//p[to] = v;
 							}
-
 						}
 					}
-				}
-
-				return d;
-
+				} return d;
 			}
 	};
-
-
 }
 
 #endif

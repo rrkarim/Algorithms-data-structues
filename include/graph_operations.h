@@ -18,28 +18,20 @@ namespace alg {
 	template <typename T>
 	class Graph_Op<T, nothing> {
 	    public:
-		
 		// return random directed unweighted graph
 		static vii<T> rand_directed(const int &value) {
 			vii<T> ret;
 			ret.resize(value);
 
-			// FIX use boost libriary
-			srand(0);
-			//**
-
+			RANDOM_INIT();
 			for(int i = 0; i < value; ++i) {
 				for(int j = i + 1; j < value; ++j) {
-					// 33% connected graph
-					int x = rand() % 3;
+					int x = RANDOM(0, 3); // 33% connected graph
 					if(!x) {
 						ret[i].push_back(j);
 					}
 				}
-			}
-
-			return ret;
-
+			} return ret;
 		}
 
 		static void print_graph(const vii<T>& temp_graph) {
@@ -52,30 +44,22 @@ namespace alg {
 	};
 	template <typename T, typename TW>
 	class Graph_Op {
-		public:
-			// return random directed weighted graph
-			static viiw<T, TW> rand_weighted_directed(const int &value) {
+		public:	
+			static viiw<T, TW> rand_weighted_directed(const int &value, const int &max_weight) { // return random directed weighted graph
 			viiw<T, TW> ret;
 			ret.resize(value);
 
-			// FIX ***
-			srand(0);
-			//**
-
+			RANDOM_INIT();
 			for(int i = 0; i < value; ++i) {
 				for(int j = i + 1; j < value; ++j) {
-					int x = rand() % 3;
+					int x = RANDOM(0, 3); // 33% connected graph
 					if(!x) {
-						int value = rand() % 100;
+						int value = RANDOM(0, max_weight);
 						ret[i].push_back({j, value});
 					}
 				}
-			}
-
-			return ret;
-
+			} return ret;
 		}
-
 	};
 }
 
