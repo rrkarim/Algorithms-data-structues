@@ -46,7 +46,7 @@ namespace alg {
 		}
 
 		static void print_graph(const vii<T>& temp_graph) {
-            for(int i = 0; i < temp_graph.size(); ++i) {
+           	for(int i = 0; i < temp_graph.size(); ++i) {
                 for(int j = 0; j < temp_graph[i].size(); ++j) {
                     std::cout << i << " " << temp_graph[i][j] << std::endl;
                 }
