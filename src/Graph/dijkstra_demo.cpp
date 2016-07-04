@@ -7,6 +7,6 @@
 using namespace alg;
 
 int main() {
-	vii<int> g = alg::Graph_Op<int>().rand_directed(10);
-	vi<int> d = DJpath<int>().run(g, 0);
+	viiw<int, int> g = alg::Graph_Op<int, int>().rand_weighted_directed(10);
+	vi<int> d = DJpath<int, int>().run(g, 0);
 }

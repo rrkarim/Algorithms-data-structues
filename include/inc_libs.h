@@ -22,8 +22,11 @@ namespace alg {
 	template <typename T>
 	using vi = std::vector<T>;
 
+	template <typename T, typename TW>
+	using viiw = std::vector<std::vector< std::pair<T, TW> >>;
+
 	template <typename T>
-	using PINF = std::numeric_limits<T>::max();
+	using PINF = std::numeric_limits<T>;
 
 
 	template <typename T>
