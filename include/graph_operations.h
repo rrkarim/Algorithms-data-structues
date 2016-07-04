@@ -1,12 +1,19 @@
 #ifndef __GRAPH_OPERATIONS__
 #define __GRAPH_OPERATIONS__
 
+#include <vector>
+#include <stdlib.h>
+#include <iostream>
+//#include <>
+
 namespace alg {
-	
+	/*
 	template <typename T>
-	using vii = std::vector< vector<T> >;
+	using vii = std::vector<std::vector<T>>;
 
-
+	template <typename T>
+	using vi = std::vector<T>;
+	*/
 	template <typename T>
 	class Graph_Op {
 	    public:
@@ -16,7 +23,7 @@ namespace alg {
 			ret.resize(value);
 
 			// FIX ***
-			srand(time(NULL));
+			srand(0);
 			//**
 
 			for(int i = 0; i < value; ++i) {
