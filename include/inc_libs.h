@@ -12,6 +12,8 @@
 #define RANDOM_INIT()	srand(time(NULL))
 #define RANDOM(L, R)	(L + rand() % ((R) - (L) + 1))
 
+const double EPS = 1e-9;
+
 namespace alg {
 	
 
