@@ -4,16 +4,11 @@
 #include <vector>
 #include <stdlib.h>
 #include <iostream>
-//#include <>
+//#include <math_numbers.h>
 
 namespace alg {
-	/*
-	template <typename T>
-	using vii = std::vector<std::vector<T>>;
-
-	template <typename T>
-	using vi = std::vector<T>;
-	*/
+	
+	// Multi-template class structure
 
 	struct nothing {};
 
@@ -23,17 +18,19 @@ namespace alg {
 	template <typename T>
 	class Graph_Op<T, nothing> {
 	    public:
-		// return random undirected graph
+		
+		// return random directed unweighted graph
 		static vii<T> rand_directed(const int &value) {
 			vii<T> ret;
 			ret.resize(value);
 
-			// FIX ***
+			// FIX use boost libriary
 			srand(0);
 			//**
 
 			for(int i = 0; i < value; ++i) {
 				for(int j = i + 1; j < value; ++j) {
+					// 33% connected graph
 					int x = rand() % 3;
 					if(!x) {
 						ret[i].push_back(j);
@@ -56,6 +53,7 @@ namespace alg {
 	template <typename T, typename TW>
 	class Graph_Op {
 		public:
+			// return random directed weighted graph
 			static viiw<T, TW> rand_weighted_directed(const int &value) {
 			viiw<T, TW> ret;
 			ret.resize(value);
