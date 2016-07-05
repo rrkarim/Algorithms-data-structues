@@ -13,13 +13,13 @@ namespace alg {
 				d[ init ] = 0;
 
 				std::priority_queue<std::pair <TW, T>> q;
-				q.push({0, init});
+				q.push({0, init}); // push first vertex
 				while(!q.empty()) {
 					T value = q.top().second;
 					TW cur_d = -q.top().first;
-					
 					q.pop();
 					if(cur_d > d[value]) continue;
+					
 					for(size_t i = 0; i < g[value].size(); ++i) {
 						T to = g[value][i].first;
 						TW len = g[value][i].second;
