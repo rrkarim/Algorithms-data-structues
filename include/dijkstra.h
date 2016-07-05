@@ -13,23 +13,24 @@ namespace alg {
 				d[ init ] = 0;
 				std::vector<char> u(n);
 
-				for(int i = 0; i < n; ++i) {
+				for(size_t i = 0; i < n; ++i) {
 					int v = -1;
 					for(size_t j = 0; j < n; ++j) {
 						if(!u[j] && (v == -1 || d[j] < d[v]))
 							v = j;
-						if(d[v] == PINF<int>::max()) break;
-						u[v] = true;
-						for(size_t j = 0; j < g[v].size(); ++j) {
-							int to = g[v][j].first,
-							len = g[v][i].second;
+					}
+					if(d[v] == PINF<int>::max()) break;
+					u[v] = true;
+					for(size_t j = 0; j < g[v].size(); ++j) {
+						int to = g[v][j].first,
+						len = g[v][i].second;
 
-							if(d[v] + len < d[to]) {
-								d[to] = d[v] + len;
-							}
+						if(d[v] + len < d[to]) {
+							d[to] = d[v] + len;
 						}
 					}
-				} return d;
+				} 
+				return d;
 			}
 	};
 }

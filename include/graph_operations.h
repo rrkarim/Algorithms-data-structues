@@ -60,6 +60,13 @@ namespace alg {
 				}
 			} return ret;
 		}
+
+		static void print_graph(const viiw<T, TW>& temp_graph) {
+			for(int i = 0; i < temp_graph.size(); ++i) {
+				for(int j = 0; j < temp_graph[i].size(); ++j)
+					std::cout << i << " " << temp_graph[i][j].first << " " << temp_graph[i][j].second << std::endl;
+			}
+		}
 	};
 }
 
