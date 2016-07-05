@@ -2,7 +2,7 @@
 #define __DIJKSTRA__
 
 #include <inc_libs.h>
-
+#include <queue>
 namespace alg {
 	template <typename T, typename TW>
 	class DJpath {
@@ -11,25 +11,24 @@ namespace alg {
 				int n = g.size();
 				vi<T> d(n, PINF<int>::max()); // use alias template <T> declared in inc_libs
 				d[ init ] = 0;
-				std::vector<char> u(n);
 
-				for(size_t i = 0; i < n; ++i) {
-					int v = -1;
-					for(size_t j = 0; j < n; ++j) {
-						if(!u[j] && (v == -1 || d[j] < d[v]))
-							v = j;
-					}
-					if(d[v] == PINF<int>::max()) break;
-					u[v] = true;
-					for(size_t j = 0; j < g[v].size(); ++j) {
-						int to = g[v][j].first,
-						len = g[v][i].second;
-
-						if(d[v] + len < d[to]) {
-							d[to] = d[v] + len;
+				std::priority_queue<std::pair <TW, T>> q;
+				q.push({0, init});
+				while(!q.empty()) {
+					T value = q.top().second;
+					TW cur_d = -q.top().first;
+					
+					q.pop();
+					if(cur_d > d[value]) continue;
+					for(size_t i = 0; i < g[value].size(); ++i) {
+						T to = g[value][i].first;
+						TW len = g[value][i].second;
+						if(d[value] + len < d[to]) {
+							d[to] = d[value] + len;
+							q.push({-d[to], to});
 						}
 					}
-				} 
+				}
 				return d;
 			}
 	};
