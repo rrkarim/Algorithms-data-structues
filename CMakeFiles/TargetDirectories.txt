@@ -1,3 +1,0 @@
-C:/Users/Kerimov/Desktop/git/CMakeFiles/rebuild_cache.dir
-C:/Users/Kerimov/Desktop/git/CMakeFiles/a.dir
-C:/Users/Kerimov/Desktop/git/CMakeFiles/edit_cache.dir

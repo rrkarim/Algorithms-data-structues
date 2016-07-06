@@ -1,9 +1,0 @@
-Detecting C compiler ABI info failed to compile with the following output:
-Change Dir: C:/Users/Kerimov/Desktop/git/CMakeFiles/CMakeTmp
-
-Run Build Command:"C:/MinGW/bin/mingw32-make.exe" "cmTC_3ace8/fast"
-mingw32-make.exe: Makefile: Permission denied
-mingw32-make.exe: *** No rule to make target 'cmTC_3ace8/fast'.  Stop.
-
-
-
