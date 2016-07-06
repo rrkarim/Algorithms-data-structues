@@ -1,0 +1,47 @@
+{
+	"folders":
+	[
+		{
+			"path": "./"
+		}
+	],
+	"build_systems":
+	[
+		{
+			"name": "Project - all",
+			"cmd": ["C:/MinGW/bin/mingw32-make.exe", "-f", "Makefile", "VERBOSE=1", "all"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$"
+		},
+		{
+			"name": "Project - clean",
+			"cmd": ["C:/MinGW/bin/mingw32-make.exe", "-f", "Makefile", "VERBOSE=1", "clean"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$"
+		},
+		{
+			"name": "Project - rebuild_cache",
+			"cmd": ["C:/MinGW/bin/mingw32-make.exe", "-f", "Makefile", "VERBOSE=1", "rebuild_cache"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$"
+		},
+		{
+			"name": "Project - a",
+			"cmd": ["C:/MinGW/bin/mingw32-make.exe", "-f", "Makefile", "VERBOSE=1", "a"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$"
+		},
+		{
+			"name": "Project - a/fast",
+			"cmd": ["C:/MinGW/bin/mingw32-make.exe", "-f", "Makefile", "VERBOSE=1", "a/fast"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$"
+		},
+		{
+			"name": "Project - edit_cache",
+			"cmd": ["C:/MinGW/bin/mingw32-make.exe", "-f", "Makefile", "VERBOSE=1", "edit_cache"],
+			"working_dir": "${project_path}",
+			"file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$"
+		}
+	]
+	}
