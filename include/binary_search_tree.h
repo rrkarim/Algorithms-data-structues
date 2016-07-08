@@ -1,5 +1,5 @@
-#ifndef __LINKED_LIST__
-#define __LINKED_LIST__
+#ifndef __BINARY_SEARCH_TREE__
+#define __BINARY_SEARCH_TREE__
 
 #include <stdlib.h>
 #include <exception>
