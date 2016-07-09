@@ -119,9 +119,24 @@ namespace alg {
 				return 0;
 			}
 
-			void swap() {
-				
+			void swap_list() {
+				node *it = pHead->next;
+				node *head_s = new node;
+
+				head_s->value = pHead->value;
+				head_s->next = NULL;
+				 
+				while(it != NULL) {
+					node *temp = new node;
+					temp->value = it->value;
+					temp->next = head_s;
+					head_s = temp;
+					it = it->next;
+				}
+				__destruct(pHead);
+				this->pHead = head_s;
 			}
+
 
 			void traverse_print() {
 				traverse_print(pHead);

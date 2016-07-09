@@ -19,16 +19,19 @@ int main() {
 	list.insert_by_position(17, 0);
 
 	list.remove_by_position(0);
-	
+
+	list.swap_list();
 	list.traverse_print();
+	
 
-
+	/*
 
 	list2.insert_to_tail(33);
 	list2.insert_to_tail(34);
 
 	list = list2;
 	list.traverse_print();	
-
+	
+	*/
 	return 0;
 }
