@@ -10,11 +10,10 @@ const int MAX_ELEMENTS = 10005;
 
 int main() {
 	
-	LinkedList<int> *list = new LinkedList<int>();
-	list->insert(12);
-	list->insert(13);
-	list->insert(14);
-
-	list->traverse_print();	
+	LinkedList<int> *list = new LinkedList<int>(), 
+	*list2 = new LinkedList<int>();
+	list->insert_to_tail(12);
+	list2->insert_to_tail(14);
+	list = list2;	
 	return 0;
 }
