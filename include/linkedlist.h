@@ -1,3 +1,7 @@
+/**
+	LinkedList implementation
+	Rasul Kerimov (CoderINusE) 
+*/
 #ifndef __LINKED_LIST__
 #define __LINKED_LIST__
 
@@ -73,7 +77,7 @@ namespace alg {
 				}
 			}
 
-			void insert_by_position(const T &value, int position) {
+			void insert_by_position(const T &value, const int &position) {
 				if(position >= this->size) { 
 					insert_to_tail(value);
 				}
@@ -87,7 +91,6 @@ namespace alg {
 					temp->next = NULL; 	   	//
 
 					node *it = pHead;
-
 					for(int i = 0; i < position - 1; ++i) it = it->next;
 
 					node *next_temp = it->next;
@@ -98,7 +101,27 @@ namespace alg {
 				}
 			}
 
-			void remove_by_position()
+			bool remove_by_position(const int &position) {
+				if(position >= this->size)
+					return 1;
+				if(position == 0) {
+					node *delete_node = pHead;
+					pHead = pHead->next;
+					delete delete_node;
+					return 0;
+				}
+				node *it = pHead;
+				for(int i = 0; i < position - 1; ++i) it = it->next;
+				
+				node *delete_node = it->next;
+				it->next = delete_node->next;
+				delete delete_node;
+				return 0;
+			}
+
+			void swap() {
+				
+			}
 
 			void traverse_print() {
 				traverse_print(pHead);
