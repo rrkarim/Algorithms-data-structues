@@ -16,23 +16,29 @@ namespace alg {
 		class LLException : public std::exception {
 			public:
 				virtual const char* what() const throw() {
-					return "";
+					return "out of range";
 				}
 		} excp_key;
 
-		private:
+		private:	
 			node *pHead;
 			node *pTail;
+			int size;
 		public:
-			LinkedList() : pHead(NULL), pTail(NULL) {};
+			LinkedList() : pHead(NULL), pTail(NULL), size(0) {};
 			~LinkedList() {
 				__destruct(pHead);
 			} 
 
-			LinkedList& operator=(LinkedList *linkn) {
-				std::cout << "dsdss" << std::endl;
+			LinkedList& operator=(LinkedList linkn) {
 				__destruct(pHead);
-				std::cout << linkn->pHead->value << std::endl;
+				pHead = pTail = NULL;
+
+				//Copy-Swap idiom
+				swap(pHead, linkn.pHead);
+				swap(pTail, linkn.pTail);
+				swap(size, linkn.size);
+				return *this;
 			}
 
 			void insert_to_tail(const T & value) {
@@ -42,10 +48,12 @@ namespace alg {
 
 				if(pHead == NULL) {
 					pHead = pTail = temp;
+					size = 1;
 				}
 				else {
 					pTail->next = temp;
 					pTail = pTail->next; 
+					size += 1;
 				}
 			}
 
@@ -56,12 +64,41 @@ namespace alg {
 
 				if(pHead == NULL) {
 					pHead = pTail = temp;
+					size = 1;
 				} 
 				else {
 					temp->next = pHead;
 					pHead = temp;
+					size += 1;
 				}
 			}
+
+			void insert_by_position(const T &value, int position) {
+				if(position >= this->size) { 
+					insert_to_tail(value);
+				}
+				else if(position == 0) {
+					insert_to_head(value);
+				}
+				else {
+					
+					node * temp = new node; //Create new temporary node
+					temp->value = value;
+					temp->next = NULL; 	   	//
+
+					node *it = pHead;
+
+					for(int i = 0; i < position - 1; ++i) it = it->next;
+
+					node *next_temp = it->next;
+					it->next = temp;
+					it = it->next;
+					it->next = next_temp;
+
+				}
+			}
+
+			void remove_by_position()
 
 			void traverse_print() {
 				traverse_print(pHead);
