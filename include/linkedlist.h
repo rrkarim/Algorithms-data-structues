@@ -68,12 +68,12 @@ namespace alg {
 
 				if(pHead == NULL) {
 					pHead = pTail = temp;
-					size = 1;
+					this->size = 1;
 				} 
 				else {
 					temp->next = pHead;
 					pHead = temp;
-					size += 1;
+					this->size += 1;
 				}
 			}
 
@@ -97,6 +97,8 @@ namespace alg {
 					it->next = temp;
 					it = it->next;
 					it->next = next_temp;
+					
+					this->size += 1;
 
 				}
 			}
@@ -116,6 +118,7 @@ namespace alg {
 				node *delete_node = it->next;
 				it->next = delete_node->next;
 				delete delete_node;
+				this->size -= 1;
 				return 0;
 			}
 
