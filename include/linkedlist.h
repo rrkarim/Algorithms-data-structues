@@ -37,12 +37,14 @@ namespace alg {
 			LinkedList& operator=(LinkedList linkn) {
 				__destruct(pHead);
 				pHead = pTail = NULL;
-
-				//Copy-Swap idiom
-				swap(pHead, linkn.pHead);
+				swap(pHead, linkn.pHead); //Copy-Swap idiom
 				swap(pTail, linkn.pTail);
-				swap(size, linkn.size);
+				swap(size, linkn.size); //
 				return *this;
+			}
+
+			iterator end() {
+				return iterator(pTail);
 			}
 
 			void insert_to_tail(const T & value) {
