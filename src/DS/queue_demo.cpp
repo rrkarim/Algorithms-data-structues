@@ -14,7 +14,7 @@ int main() {
 	srand (time(NULL)); //init random
 
 	Queue<int> q0, q1;
-	for(int i = 0; i < 10; ++i) q0.pushBack(rand() % 30); // generate 30 random elements
+	for(int i = 0; i < 10; ++i) q0.pushBack(rand() % 30); // generate 10 random elements
 
 	for(Queue<int>::Iterator it = q0.begin(); it != q0.end(); ++it) {
 		cout << *it << endl;
