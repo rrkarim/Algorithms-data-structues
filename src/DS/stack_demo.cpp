@@ -2,7 +2,7 @@
 * 
 */
 #include <inc_libs.h>
-#include "queue.h"
+#include "stack.h"
 #include <time.h>
 
 using namespace alg;
@@ -12,11 +12,11 @@ const int MAX_ELEMENTS = 10005;
 
 int main() {
 	srand (time(NULL)); //init random
+	
+	Stack<int> s0, s1;
+	for(int i = 0; i < 10; ++i) s0.push(i + 1); // generate 30 random elements
 
-	Queue<int> q0, q1;
-	for(int i = 0; i < 10; ++i) q0.pushBack(rand() % 30); // generate 30 random elements
-
-	for(Queue<int>::Iterator it = q0.begin(); it != q0.end(); ++it) {
+	for(Stack<int>::Iterator it = s0.begin(); it != s0.end(); ++it) {
 		cout << *it << endl;
 	}
 

@@ -1,5 +1,6 @@
 /**
 	LinkedList implementation
+	Iterator pattern
 	Rasul Kerimov (CoderINusE) 
 */
 #ifndef __LINKED_LIST__

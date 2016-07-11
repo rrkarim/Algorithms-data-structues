@@ -1,10 +1,10 @@
 /**
-	Queue implementation
+	Stack implementation
 	Iterator pattern
 	Rasul Kerimov (CoderINusE) 
 */
-#ifndef __QUEUE_S__
-#define __QUEUE_S__
+#ifndef __STACK_S__
+#define __STACK_S__
 
 #include <stdlib.h>
 #include <exception>
@@ -12,7 +12,7 @@
 
 namespace alg {
 	template <typename T>
-	class Queue {
+	class Stack {
 		class node {
 			public:
 				node(const T& val_) : next(NULL), value(val_) {}
@@ -23,36 +23,35 @@ namespace alg {
 		};
 
 		private:	
-			node *head, *tail;
+			node *head;
 			int size_;
 		public:
-			Queue() : head(NULL), tail(NULL), size_(0) {};
-			~Queue() {
+			Stack() : head(NULL), size_(0) {};
+			~Stack() {
 				__destruct(head);
 			} 
-			Queue& operator=(Queue queuet) {
+			Stack& operator=(Stack Stackt) {
 				__destruct(head);
-				head = tail = NULL;
-				swap(head, queuet.head); //Copy-Swap idiom
-				swap(head, queuet.tail);
-				swap(size_, queuet.size_); // 
+				head = NULL;
+				swap(head, Stackt.head); //Copy-Swap idiom
+				//swap(head, Stackt.tail);
+				swap(size_, Stackt.size_); // 
 				return *this; 
 			}
-			void pushBack(const T& value) {
+			void push(const T& value) {
 				if(head == NULL) {
 					head = new node(value);
-					tail = head;
 				}
 				else {
-					node *p = new node(value);
-					tail->next = p;
-					tail = p;
+					node *p = head;
+					head = new node(value);
+					head->next = p;
 				}
 				size_ += 1;
 			}
-			T popFront() {
+			T pop() {
 				if(head == NULL) {
-					throw std::out_of_range("Queue is empty");
+					throw std::out_of_range("Stack is empty");
 				}
 				else {
 					node* p = head;
@@ -69,11 +68,8 @@ namespace alg {
 				__destruct(head);
 				size_ = 0;
 			}
-			T& front() {
+			T& top() {
 				return head->getVal();
-			}
-			T& back() {
-				return tail->getVal();
 			}
 			// bug fix: iterator tag
 			class Iterator {
@@ -106,7 +102,7 @@ namespace alg {
 						return node_->getVal();
 					}
 					T* operator->() {
-						return (&*(Queue<T>::Iterator)*this);
+						return (&*(Stack<T>::Iterator)*this);
 					}
 					
 
