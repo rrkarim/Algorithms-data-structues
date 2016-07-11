@@ -8,16 +8,19 @@
 #include <stdlib.h>
 #include <exception>
 #include <iostream>
-#include <iterator>
 
 using namespace std;
 
 namespace alg {
 	template <typename T>
 	class LinkedList {
-		struct node {
-			T value;
-			node* next;
+		class node {
+			public:
+				node(const T& val_) : next(NULL), value(val_) {}
+				T& getVal() {return value;}
+				node* next;
+			private:
+				T value;
 		};
 		class LLException : public std::exception {
 			public:
@@ -25,7 +28,6 @@ namespace alg {
 					return "out of range";
 				}
 		} excp_key;
-
 		private:	
 			node *pHead;
 			node *pTail;
@@ -35,7 +37,6 @@ namespace alg {
 			~LinkedList() {
 				__destruct(pHead);
 			} 
-
 			LinkedList& operator=(LinkedList linkn) {
 				__destruct(pHead);
 				pHead = pTail = NULL;
@@ -44,16 +45,8 @@ namespace alg {
 				swap(size, linkn.size); //
 				return *this;
 			}
-
-			iterator end() {
-				return iterator(pTail);
-			}
-
 			void insert_to_tail(const T & value) {
-				node * temp = new node;
-				temp->value = value;
-				temp->next = NULL;
-
+				node * temp = new node(value);
 				if(pHead == NULL) {
 					pHead = pTail = temp;
 					size = 1;
@@ -64,12 +57,8 @@ namespace alg {
 					size += 1;
 				}
 			}
-
 			void insert_to_head(const T & value) {
-				node * temp = new node;
-				temp->value = value;
-				temp->next = NULL;
-
+				node * temp = new node(value);
 				if(pHead == NULL) {
 					pHead = pTail = temp;
 					this->size = 1;
@@ -80,7 +69,6 @@ namespace alg {
 					this->size += 1;
 				}
 			}
-
 			void insert_by_position(const T &value, const int &position) {
 				if(position >= this->size) { 
 					insert_to_tail(value);
@@ -90,9 +78,7 @@ namespace alg {
 				}
 				else {
 					
-					node * temp = new node; //Create new temporary node
-					temp->value = value;
-					temp->next = NULL; 	   	//
+					node * temp = new node(value); //Create new temporary node
 
 					node *it = pHead;
 					for(int i = 0; i < position - 1; ++i) it = it->next;
@@ -106,7 +92,6 @@ namespace alg {
 
 				}
 			}
-
 			bool remove_by_position(const int &position) {
 				if(position >= this->size)
 					return 1;
@@ -125,32 +110,65 @@ namespace alg {
 				this->size -= 1;
 				return 0;
 			}
-
 			void swap_list() {
 				node *it = pHead->next;
-				node *head_s = new node;
-
-				head_s->value = pHead->value;
-				head_s->next = NULL;
-				 
+				node *head_s = new node(pHead->getVal());
+				
 				while(it != NULL) {
-					node *temp = new node;
-					temp->value = it->value;
-					temp->next = head_s;
+					node *temp = new node(it->getVal());
 					head_s = temp;
 					it = it->next;
 				}
 				__destruct(pHead);
 				this->pHead = head_s;
 			}
-
-
 			void traverse_print() {
 				traverse_print(pHead);
 			}
-
 			void traverse_print_backward() {
 				traverse_print_backward(pHead);
+			}
+			// bug fix: iterator tag
+			class Iterator {
+				public:
+					Iterator(node *p) : node_(p) {}
+					~Iterator() { delete node_; }
+					Iterator& operator=(const Iterator& other) {
+						delete node_;
+						swap(node_, other.node_);
+						return (*this);
+					}
+					bool operator==(const Iterator& other) {
+						return (node_ == other.node_);
+					}
+					bool operator!=(const Iterator& other) {
+         				return(node_ != other.node_);
+      				}
+					Iterator& operator++() { //prefix
+						if(node_ != NULL) {
+							node_ = node_->next;
+						}
+						return (*this);
+					}
+					Iterator& operator++(int) { //postfix
+						Iterator tmp(*this);
+						++(*this);
+						return tmp;
+					}
+					T& operator*() {
+						return node_->getVal();
+					}
+					T* operator->() {
+						return (&*(LinkedList<T>::Iterator)*this);
+					}
+				private:
+					node* node_;
+			};
+			Iterator begin() {
+				return Iterator(pHead);
+			}
+			Iterator end() {
+				return Iterator(NULL);
 			}
 
 		private:
@@ -161,13 +179,13 @@ namespace alg {
 			}
 			void traverse_print(node *n) {
 				if(n == NULL) return;
-				std::cout << n->value << std::endl;
+				std::cout << n->getVal() << std::endl;
 				traverse_print(n->next);
 			}
 			void traverse_print_backward(node *n) {
 				if(n == NULL) return;
 				traverse_print_backward(n->next);
-				std::cout << n->value << std::endl;
+				std::cout << n->getVal() << std::endl;
 			}
 	};
 } 

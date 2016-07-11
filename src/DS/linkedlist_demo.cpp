@@ -18,10 +18,14 @@ int main() {
 	list.insert_to_tail(18);
 	list.insert_by_position(17, 0);
 
-	list.remove_by_position(0);
+	//list.remove_by_position(0);
 
-	list.swap_list();
-	list.traverse_print();
+	//list.swap_list();
+	//list.traverse_print();
+
+	for(LinkedList<int>::Iterator it = list.begin(); it != list.end(); ++it) {
+		cout << *it << endl;
+	}
 	
 
 	/*
