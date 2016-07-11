@@ -3,6 +3,8 @@
 */
 #include <inc_libs.h>
 #include "queue.h"
+#include <time.h>
+#include <list>
 
 using namespace alg;
 using namespace std;
@@ -10,25 +12,17 @@ using namespace std;
 const int MAX_ELEMENTS = 10005;
 
 int main() {
+	srand (time(NULL)); //init random
+	Queue<int> q0, q1;
+	list<int> l;
+	for(int i = 0; i < 10; ++i) q0.pushBack(rand() % 30); // generate 30 random elements
 
-	Queue<int> q;
-
-	q.pushBack(3131);
-	q.pushBack(31);
-	q.pushBack(1);
-
-	for(Queue::Iterator it = q.begin(); it != q.end(); ++it) {
+	for(Queue<int>::Iterator it = q0.begin(); it != q0.end(); ++it) {
 		cout << *it << endl;
 	}
 
-	/*
+	//copy(q0.begin(), q0.end(), back_inserter(l));
 
-	list2.insert_to_tail(33);
-	list2.insert_to_tail(34);
 
-	list = list2;
-	list.traverse_print();	
-	
-	*/
 	return 0;
 }

@@ -1,5 +1,5 @@
 /**
-	LinkedList implementation
+	Queue implementation with Iterator pattern
 	Rasul Kerimov (CoderINusE) 
 */
 #ifndef __QUEUE_S__
@@ -71,13 +71,16 @@ namespace alg {
 					bool operator==(const Iterator& other) {
 						return (node_ == other.node_);
 					}
+					bool operator!=(const Iterator& other) {
+         				return(node_ != other.node_);
+      				}
 					Iterator& operator++() { //prefix
 						if(node_ != NULL) {
 							node_ = node_->next;
 						}
 						return (*this);
 					}
-					Iterator& operator++() { //postfix
+					Iterator& operator++(int) { //postfix
 						Iterator tmp(*this);
 						++(*this);
 						return tmp;
@@ -86,18 +89,18 @@ namespace alg {
 					T& operator*() {
 						return node_->getVal();
 					}
-					/*
+					
 					T* operator->() {
-
+						return (&*(Queue<T>::Iterator)*this);
 					}
-					*/
+					
 
 				private:
 					node* node_;
-			}
+			};
 
 			Iterator begin() {
-				return Iterator(head_);
+				return Iterator(head);
 			}
 			Iterator end() {
 				return Iterator(NULL);
