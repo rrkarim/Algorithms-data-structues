@@ -17,6 +17,7 @@ namespace alg {
 		class node {
 			public:
 				node(const T& val_) : next(NULL), value(val_) {}
+				node(const T& val_, node* next_) : next(next_), value(val_) {}
 				T& getVal() {return value;}
 				node* next;
 			private:
@@ -77,19 +78,14 @@ namespace alg {
 					insert_to_head(value);
 				}
 				else {
-					
 					node * temp = new node(value); //Create new temporary node
-
 					node *it = pHead;
 					for(int i = 0; i < position - 1; ++i) it = it->next;
-
 					node *next_temp = it->next;
 					it->next = temp;
 					it = it->next;
 					it->next = next_temp;
-					
 					this->size += 1;
-
 				}
 			}
 			bool remove_by_position(const int &position) {
@@ -102,8 +98,7 @@ namespace alg {
 					return 0;
 				}
 				node *it = pHead;
-				for(int i = 0; i < position - 1; ++i) it = it->next;
-				
+				for(int i = 0; i < position - 1; ++i) it = it->next;			
 				node *delete_node = it->next;
 				it->next = delete_node->next;
 				delete delete_node;
@@ -113,9 +108,9 @@ namespace alg {
 			void swap_list() {
 				node *it = pHead->next;
 				node *head_s = new node(pHead->getVal());
-				
+	
 				while(it != NULL) {
-					node *temp = new node(it->getVal());
+					node *temp = new node(it->getVal(), head_s);
 					head_s = temp;
 					it = it->next;
 				}
@@ -170,7 +165,6 @@ namespace alg {
 			Iterator end() {
 				return Iterator(NULL);
 			}
-
 		private:
 			void __destruct(node *n) {
 				if(n == NULL) return;
@@ -189,6 +183,5 @@ namespace alg {
 			}
 	};
 } 
-
 
 #endif

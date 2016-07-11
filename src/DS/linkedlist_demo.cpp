@@ -17,25 +17,12 @@ int main() {
 	list.insert_to_tail(15);
 	list.insert_to_tail(18);
 	list.insert_by_position(17, 0);
-
 	//list.remove_by_position(0);
-
-	//list.swap_list();
+	list.swap_list();
 	//list.traverse_print();
 
 	for(LinkedList<int>::Iterator it = list.begin(); it != list.end(); ++it) {
 		cout << *it << endl;
 	}
-	
-
-	/*
-
-	list2.insert_to_tail(33);
-	list2.insert_to_tail(34);
-
-	list = list2;
-	list.traverse_print();	
-	
-	*/
 	return 0;
 }
