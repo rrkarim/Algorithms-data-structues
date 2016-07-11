@@ -12,38 +12,52 @@
 namespace alg {
 	template <typename T>
 	class Queue {
-		struct node
-		{
-			T value;
-			node* next;
-		};
-		class LLException : public std::exception {
+		class node {
 			public:
-				virtual const char* what() const throw() {
-					return "out of range";
-				}
-		} excp_key;
+				node(const T &val_) : next(NULL), value(val_) {}
+				T& getVal() {return value;}
+				node* next;
+			private:
+				T value;
+		};
 
 		private:	
-			node *head;
+			node *head, *tail;
 			int size;
 		public:
-			Queue() : head(NULL), size(0) {};
+			Queue() : head(NULL), tail(NULL), size(0) {};
 			~Queue() {
 				__destruct(head);
 			} 
-
 			Queue& operator=(Queue queuet) {
 				__destruct(head);
-				head = NULL;
-
-				//Copy-Swap idiom
-				swap(head, queuet.head);
-				swap(size, queuet.size);
-				return *this;
+				head = tail = NULL;
+				swap(head, queuet.head); //Copy-Swap idiom
+				swap(head, queuet.tail);
+				swap(size, queuet.size); // 
+				return *this; 
 			}
-
-
+			void pushBack(const T &value) {
+				if(head == NULL) {
+					head = new node(value);
+					tail = head;
+				}
+				else {
+					node *p = new node(value);
+					tail->next = p;
+					tail = p;
+				}
+			}
+			T popFront() {
+				if(head == NULL) {
+					throw std::out_of_range("Queue is empty");
+				}
+				else {
+					T value = head->getVal();
+					head = head->next;
+					return value;
+				}
+			}
 
 		private:
 			void __destruct(node *n) {

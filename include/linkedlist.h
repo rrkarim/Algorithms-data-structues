@@ -8,12 +8,14 @@
 #include <stdlib.h>
 #include <exception>
 #include <iostream>
+#include <iterator>
+
+using namespace std;
 
 namespace alg {
 	template <typename T>
 	class LinkedList {
-		struct node
-		{
+		struct node {
 			T value;
 			node* next;
 		};
