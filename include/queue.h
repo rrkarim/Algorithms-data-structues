@@ -14,7 +14,7 @@ namespace alg {
 	class Queue {
 		class node {
 			public:
-				node(const T &val_) : next(NULL), value(val_) {}
+				node(const T& val_) : next(NULL), value(val_) {}
 				T& getVal() {return value;}
 				node* next;
 			private:
@@ -37,7 +37,7 @@ namespace alg {
 				swap(size, queuet.size); // 
 				return *this; 
 			}
-			void pushBack(const T &value) {
+			void pushBack(const T& value) {
 				if(head == NULL) {
 					head = new node(value);
 					tail = head;
@@ -57,6 +57,50 @@ namespace alg {
 					head = head->next;
 					return value;
 				}
+			}
+			// bug fix: iterator tag
+			class Iterator {
+				public:
+					Iterator(node *p) : node_(p) {}
+					~Iterator() { delete node_; }
+					Iterator& operator=(const Iterator& other) {
+						delete node_;
+						swap(node_, other.node_);
+						return (*this);
+					}
+					bool operator==(const Iterator& other) {
+						return (node_ == other.node_);
+					}
+					Iterator& operator++() { //prefix
+						if(node_ != NULL) {
+							node_ = node_->next;
+						}
+						return (*this);
+					}
+					Iterator& operator++() { //postfix
+						Iterator tmp(*this);
+						++(*this);
+						return tmp;
+					}
+
+					T& operator*() {
+						return node_->getVal();
+					}
+					/*
+					T* operator->() {
+
+					}
+					*/
+
+				private:
+					node* node_;
+			}
+
+			Iterator begin() {
+				return Iterator(head_);
+			}
+			Iterator end() {
+				return Iterator(NULL);
 			}
 
 		private:

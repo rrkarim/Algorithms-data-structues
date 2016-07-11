@@ -17,8 +17,9 @@ int main() {
 	q.pushBack(31);
 	q.pushBack(1);
 
-	cout << q.popFront() << endl;
-	
+	for(Queue::Iterator it = q.begin(); it != q.end(); ++it) {
+		cout << *it << endl;
+	}
 
 	/*
 
