@@ -118,6 +118,20 @@ namespace alg {
 				__destruct(pHead);
 				this->pHead = head_s;
 			}
+			void sort_helper(node *n, node *curr) { //Insertion sort O(n^2)
+				if(n == curr) { return n; }
+				node *temp = f(n->next, curr);
+				if(n->val > temp->val) {
+					swap(n->val, temp->val);
+				} 
+			}
+			void sort() {
+				node *curr = pHead;
+				while(curr != NULL) {
+					sort_helper(pHead, curr);
+					curr = curr->next;
+				}
+			}
 			void traverse_print() {
 				traverse_print(pHead);
 			}
