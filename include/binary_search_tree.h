@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <exception>
 #include <iostream>
+#include <vector>
 
 namespace alg {
 	template <typename KeyT, typename ValueT>
@@ -29,7 +30,14 @@ namespace alg {
 			BST& operator=(const BST&);
 		public:
 			BST() : m_root(NULL) {};
-
+			BST(std::vector<ValueT>& nums) {
+				if(nums.empty()) {
+					m_root = NULL;
+					return;
+				}
+				int l = 0, r = nums.size() - 1;
+				m_root = vector_to_bst(nums, l, r, 1);
+			}
 			~BST() {
 				__destruct(m_root);
 			}
@@ -103,23 +111,24 @@ namespace alg {
 					return true;
 				}
 
-				void print_tree(treeNode * n, int indent) {
+				void print_tree() {
+					print_helper(m_root, 0);
+				}
+			private:
+
+				void print_helper(treeNode * n, int indent) {
 					if (n == NULL) {
 						return;
 					}
-					print_tree(n->right, indent+1);
+					print_helper(n->right, indent+1);
 					int i;
 					for (i = 0;i<indent;i++){
 						printf(" ");
 					}
 					std::cout << "[" << n->key << "," << n->value << "]" << std::endl;
-					print_tree(n->left, indent+1);
+					print_helper(n->left, indent+1);
 				}
 
-				void print_helper() {
-					print_tree(m_root, 0);
-				}
-			private:
 				void __destruct(treeNode *n) {
 					if (n==NULL) return;
 					__destruct(n->left);
@@ -146,6 +155,23 @@ namespace alg {
 					}
 
 					return x;
+				}
+
+				treeNode * vector_to_bst(std::vector<ValueT>& nums, int l, int r, KeyT c) {
+					if(l > r) return NULL;
+					
+					treeNode * ret = new treeNode;
+					if(l == r) {	
+						ret->value = nums[l];
+						ret->key = c;
+						return ret;
+					}
+					int m = (l + r) / 2;
+					ret->value = nums[m];
+					ret->key = c;
+					ret->left = vector_to_bst(nums, l, m - 1, c * 2);
+					ret->right = vector_to_bst(nums, m + 1, r, c * 2 + 1);
+					return ret;
 				}
 	};
 } 
