@@ -1,3 +1,7 @@
+/**
+	Binary Tree implementation
+	Rasul Kerimov (CoderINusE) 
+*/
 #ifndef __BINARY_SEARCH_TREE__
 #define __BINARY_SEARCH_TREE__
 
