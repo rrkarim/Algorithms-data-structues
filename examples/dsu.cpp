@@ -12,13 +12,10 @@ using namespace std;
 const int MAX = 1000005;
 
 vector <pair<int, int> > G [MAX];
-
 int p [MAX];
-
 int V, E;
 
-struct edge
-{
+struct edge {
    int n1, n2;
    int w;
 };
@@ -27,8 +24,7 @@ edge Q [MAX];
 long long total_length;
 bool selected[MAX];
 
-int find_root(int N)
-{
+int find_root(int N) {
    if(p[N] == N) return N;
    else return p[N] = find_root(p[N]);
 }
