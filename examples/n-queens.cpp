@@ -24,35 +24,27 @@ void f(int k, const int &n) {
     for(int i = 0; i < n; ++i) {
             if(hor_used[i]) continue;
             for(int j = 0; j < n; ++j) {
-
                 if(us[i][j]) continue;
 
                 int diag = (n - i - 1) + j;
                 if(!hor_used[i] && !ver_used[j] && !diag1_us[i + j] && !diag2_us[diag]) {
 
-                    hor_used[i] = 1;
-                    ver_used[j] = 1;
-                    diag1_us[i + j] = 1;
-                    diag2_us[diag] = 1;
+                    hor_used[i] = 1, ver_used[j] = 1;
+                    diag1_us[i + j] = 1, diag2_us[diag] = 1;
 
                     f(k + 1, n);
 
-                    us[i][j] = 1;
-                    vi[len]=i;
-                    vi2[len] = j;
+                    us[i][j] = 1, vi[len] = i, vi2[len] = j;
                     len += 1;
 
-                    hor_used[i] = 0;
-                    ver_used[j] = 0;
-                    diag1_us[i + j] = 0;
-                    diag2_us[diag] = 0;
+                    hor_used[i] = 0, ver_used[j] = 0;
+                    diag1_us[i + j] = 0, diag2_us[diag] = 0;
                 }
 
             }
 
         }
         for(int i = 0; i < len; ++i) us[vi[i]][vi2[i]] = 0;
-
     }
     int totalNQueens(int n) {
         f(0, n);

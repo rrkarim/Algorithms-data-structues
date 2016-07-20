@@ -59,7 +59,7 @@ namespace alg {
 					size += 1;
 				}
 			}
-			void insert_to_head(const T & value) {
+			void insert_to_head(const T & value) { //
 				node * temp = new node(value);
 				if(pHead == NULL) {
 					pHead = pTail = temp;
@@ -71,7 +71,7 @@ namespace alg {
 					this->size += 1;
 				}
 			}
-			void insert_by_position(const T &value, const int &position) {
+			void insert_by_position(const T &value, const int &position) { //
 				if(position >= this->size) { 
 					insert_to_tail(value);
 				}
