@@ -11,7 +11,6 @@ namespace alg {
 				int n = g.size();
 				vi<T> d(n, PINF<int>::max()); // use alias template <T> declared in inc_libs
 				d[ init ] = 0;
-
 				std::priority_queue<std::pair <TW, T>> q;
 				q.push({0, init}); // push first vertex
 				while(!q.empty()) {
