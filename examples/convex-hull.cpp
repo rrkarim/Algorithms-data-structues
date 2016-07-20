@@ -65,6 +65,5 @@ int main() {
         p += sqrt( 1.0 * (points[i + 1] - points[i]).len() );
     }
     printf("%.1lf\n", p);
-    //cout << fixed << setprecision(1) << p << endl;
 
 }
