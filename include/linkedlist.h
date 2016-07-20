@@ -118,14 +118,14 @@ namespace alg {
 				__destruct(pHead);
 				this->pHead = head_s;
 			}
-			void sort_helper(node *n, node *curr) { //Insertion sort O(n^2)
+			void sort_helper(node *n, node *curr) { // insertion sort O(n^2)
 				if(n == curr) { return n; }
 				node *temp = f(n->next, curr);
 				if(n->val > temp->val) {
 					swap(n->val, temp->val);
 				} 
 			}
-			void sort() {
+			void sort() { // sort linked list in ascending order
 				node *curr = pHead;
 				while(curr != NULL) {
 					sort_helper(pHead, curr);
@@ -133,10 +133,10 @@ namespace alg {
 				}
 			}
 			void traverse_print() {
-				traverse_print(pHead);
+				traverse_print(pHead) // private method;
 			}
 			void traverse_print_backward() {
-				traverse_print_backward(pHead);
+				traverse_print_backward(pHead); // private method
 			}
 			// bug fix: iterator tag
 			class Iterator {
