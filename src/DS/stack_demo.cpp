@@ -1,5 +1,7 @@
 /**
-* 
+	Stack implementation
+	Iterator pattern
+	Rasul Kerimov (CoderINusE) 
 */
 #include <inc_libs.h>
 #include "stack.h"
