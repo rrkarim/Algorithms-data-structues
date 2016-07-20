@@ -11,7 +11,6 @@ using namespace alg;
 using namespace std;
 
 const int MAX_ELEMENTS = 10005;
-
 int main() {
 	srand (time(NULL)); //init random
 	
