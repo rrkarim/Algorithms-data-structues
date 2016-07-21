@@ -32,6 +32,8 @@ public:
       int ret = curr->value;
       add_to_tail(newnode);
       remove(curr);
+      //print(head);
+      map_elems[key] = newnode;
       return ret;
     }
     return -1;
@@ -42,6 +44,7 @@ public:
       head = tail = n;
     }
     else {
+      n->pre = tail;
       tail->next = n;
       tail = tail->next;  
     }
@@ -67,6 +70,7 @@ public:
       node * newnode = new node(key, value); 
       add_to_tail(newnode);
       remove(curr);
+      map_elems[key] = newnode;
     }
     else {
       node * newnode = new node(key, value); 
@@ -82,10 +86,22 @@ public:
     }
   }
 
+  void print(node *n) {
+    while(n != NULL) {
+      cout << n->value << " ";
+      n = n->next;
+    } 
+    cout << endl;
+  }
+
 };
 
 int main() {
-  LRUCache * cache = new LRUCache(3);
+  LRUCache * cache = new LRUCache(1);
   cache->set(2, 1);
-  cout << cache->get(1) << endl;
+  cout << cache->get(2) << endl;
+  cache->set(3, 2);
+  cout << cache->get(2) << endl;
+  cout << cache->get(3) << endl;
+  
 }
