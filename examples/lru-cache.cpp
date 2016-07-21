@@ -61,7 +61,7 @@ public:
 
   }
 
-  int set(int key, int value) {
+  void set(int key, int value) {
     if(map_elems[key]) {
       node * curr = map_elems[key];
       node * newnode = new node(key, value); 
@@ -86,10 +86,6 @@ public:
 
 int main() {
   LRUCache * cache = new LRUCache(3);
-  cache->set(1, 34);
-  cache->set(2, 35);
-  cache->set(3, 32);
-  cache->set(4, 31);
-
+  cache->set(2, 1);
   cout << cache->get(1) << endl;
 }
