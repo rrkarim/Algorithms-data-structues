@@ -32,7 +32,6 @@ public:
       int ret = curr->value;
       add_to_tail(newnode);
       remove(curr);
-      //print(head);
       map_elems[key] = newnode;
       return ret;
     }
@@ -74,7 +73,7 @@ public:
     }
     else {
       node * newnode = new node(key, value); 
-      if(map_elems.size() > capacity) {
+      if((int)map_elems.size() > capacity) {
         map_elems.erase(head->key);
         remove(head);
         add_to_tail(newnode);
@@ -103,5 +102,4 @@ int main() {
   cache->set(3, 2);
   cout << cache->get(2) << endl;
   cout << cache->get(3) << endl;
-  
 }
