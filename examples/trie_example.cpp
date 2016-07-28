@@ -1,24 +1,24 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-const int N=1e5+10, M=26;
+const int N = 1e5+10, M = 26;
 int ch[N][M], sz, n,k;
 char s[N];
 void insert(const char* s) {
-	int u=0, l=strlen(s);
-	for (int i=0; i<l; u=ch[u][s[i++]-'a'])
-		if(!ch[u][s[i]-'a'])
-			ch[u][s[i]-'a']=++sz;
+	int u = 0, l = strlen(s);
+	for (int i=0; i<l; u=ch[u][s[i++] - 'a'])
+		if(!ch[u][s[i] - 'a'])
+			ch[u][s[i] - 'a'] = ++sz;
 }
 
 int dfs(int x) {
-	int flag=1, ans=0;
-	for (int i=0; i<M; i++)
+	int flag = 1, ans = 0;
+	for (int i = 0; i < M; i++)
 		if(ch[x][i]) {
-			flag=0;
-			ans|=dfs(ch[x][i])^3;
+			flag = 0;
+			ans |= dfs(ch[x][i])^3;
 		}
-	if(flag) ans=1;
+	if(flag) ans = 1;
 	return ans;
 }
 

@@ -1,5 +1,3 @@
-String matching in linear-time
-
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -16,15 +14,12 @@ public:
   int_vec find_all(const std::string &text, const std::string &pattern);
 
 };
-
-// create the shift-lookup-table
 void string_search::compute_shifts(const std::string &pattern)
 {
   int next_shift = 0;
   shifts.clear();
   shifts.push_back(0); // shift to the first character
 
-  // start with the second character, since the shift to the first is always 0
   for(int i = 1; i < pattern.length(); i++)
   {
     while(next_shift > 0 && pattern[next_shift] != pattern[i])
@@ -37,9 +32,7 @@ void string_search::compute_shifts(const std::string &pattern)
   }
 }
 
-// search the string and return when the first occurrence is found
-int
-string_search::find_first(const std::string &text, const std::string &pattern)
+int string_search::find_first(const std::string &text, const std::string &pattern)
 {
   int next_shift = 0;
   compute_shifts(pattern);
@@ -57,9 +50,7 @@ string_search::find_first(const std::string &text, const std::string &pattern)
   return -1;
 }
 
-// search the string and put every occurence in a vector
-int_vec
-string_search::find_all(const std::string &text, const std::string &pattern)
+int_vec string_search::find_all(const std::string &text, const std::string &pattern)
 {
   int next_shift = 0;
   int_vec positions;
@@ -74,8 +65,8 @@ string_search::find_all(const std::string &text, const std::string &pattern)
 
     if(next_shift == pattern.length())
     {
-      positions.push_back(i - (pattern.length() - 1)); // found one, put in list
-      next_shift = shifts[next_shift - 1]; // restart pattern with last shift
+      positions.push_back(i - (pattern.length() - 1));
+      next_shift = shifts[next_shift - 1]; 
     }
   }
   return positions;
@@ -89,8 +80,6 @@ int main(int argc, char **argv)
   }
   std::string pattern = argv[2];
 
-  // read the file. Since the file is read like this all white-characters
-  // are eaten, so a search including white-characters will fail...
   fstream fs;
   std::string text, temp;
   fs.open(argv[1], ios::in);
@@ -100,11 +89,9 @@ int main(int argc, char **argv)
   }
   fs.close();
 
-  // search the file
   string_search search;
   int_vec pos_list = search.find_all(text, pattern);
 
-  // print out result
   std::vector<int>::iterator it;
   cout << "Found " << pos_list.size() << " occurrences" << endl;
   for(it = pos_list.begin(); it != pos_list.end(); it++){

@@ -87,11 +87,6 @@ int main() {
 
         }
 
-
-        //if(l > 0) printf("%d\n", max_query(1, 0, n - 1, l - 1, r - 1) - min_query(1, 0, n - 1, l - 1, r - 1));
-        //else update(1, 0, n - 1, -(l+1), r);
-
-
     }
 
 }
